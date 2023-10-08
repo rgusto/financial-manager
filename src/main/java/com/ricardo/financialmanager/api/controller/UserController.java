@@ -2,7 +2,7 @@ package com.ricardo.financialmanager.api.controller;
 
 import com.ricardo.financialmanager.api.contract.UserAPI;
 import com.ricardo.financialmanager.api.model.request.UserRequest;
-import com.ricardo.financialmanager.api.model.request.UserRequestUpdate;
+import com.ricardo.financialmanager.api.model.request.UserUpdateRequest;
 import com.ricardo.financialmanager.api.model.response.UserResponse;
 import com.ricardo.financialmanager.domain.entity.UserEntity;
 import com.ricardo.financialmanager.domain.service.UserService;
@@ -43,7 +43,7 @@ public class UserController implements UserAPI {
     }
 
     @Override
-    public ResponseEntity<UserResponse> update(UserRequestUpdate userRequest, UUID id) {
+    public ResponseEntity<UserResponse> update(UserUpdateRequest userRequest, UUID id) {
         UserEntity user = modelMapper.map(userRequest, UserEntity.class);
         user.setId(id);
         return ResponseEntity.ok(modelMapper.map(userService.update(user), UserResponse.class));

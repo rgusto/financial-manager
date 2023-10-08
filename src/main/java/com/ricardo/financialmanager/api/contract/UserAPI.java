@@ -1,7 +1,7 @@
 package com.ricardo.financialmanager.api.contract;
 
 import com.ricardo.financialmanager.api.model.request.UserRequest;
-import com.ricardo.financialmanager.api.model.request.UserRequestUpdate;
+import com.ricardo.financialmanager.api.model.request.UserUpdateRequest;
 import com.ricardo.financialmanager.api.model.response.UserResponse;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -41,7 +41,7 @@ public interface UserAPI {
     @PutMapping("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResponseEntity<UserResponse> update(@RequestBody @Valid UserRequestUpdate userRequest, @PathVariable UUID id);
+    public ResponseEntity<UserResponse> update(@RequestBody @Valid UserUpdateRequest userRequest, @PathVariable UUID id);
 
     @DeleteMapping("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
