@@ -1,18 +1,16 @@
-package com.ricardo.financialmanager.api.model.response;
+package com.ricardo.financialmanager.api.model.request;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @Getter
 @Setter
-public class UserResponse {
+public class UserRequest {
 
-    private UUID id;
     private String firstName;
     private String lastName;
     private String email;
     private String login;
+    private String password;
 
 }

@@ -22,5 +22,22 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    public UserEntity create(UserEntity user) {
+        return userRepository.save(user);
+    }
+
+    public UserEntity update(UserEntity user) {
+        UserEntity userDb = this.findById(user.getId());
+        userDb.setFirstName(user.getFirstName());
+        userDb.setLastName(user.getLastName());
+        userDb.setEmail(user.getEmail());
+        return userRepository.save(userDb);
+    }
+
+    public void delete(UUID id) {
+        UserEntity userDb = this.findById(id);
+        userRepository.delete(userDb);
+        userRepository.flush();
+    }
 
 }

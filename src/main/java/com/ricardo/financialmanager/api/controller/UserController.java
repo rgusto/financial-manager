@@ -1,7 +1,10 @@
 package com.ricardo.financialmanager.api.controller;
 
 import com.ricardo.financialmanager.api.contract.UserAPI;
+import com.ricardo.financialmanager.api.model.request.UserRequest;
+import com.ricardo.financialmanager.api.model.request.UserRequestUpdate;
 import com.ricardo.financialmanager.api.model.response.UserResponse;
+import com.ricardo.financialmanager.domain.entity.UserEntity;
 import com.ricardo.financialmanager.domain.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,25 @@ public class UserController implements UserAPI {
     @Override
     public ResponseEntity<UserResponse> findById(UUID id) {
         return ResponseEntity.ok(modelMapper.map(userService.findById(id), UserResponse.class));
+    }
+
+    @Override
+    public UserResponse create(UserRequest userRequest) {
+        UserEntity user = modelMapper.map(userRequest, UserEntity.class);
+        return modelMapper.map(userService.create(user), UserResponse.class);
+    }
+
+    @Override
+    public ResponseEntity<UserResponse> update(UserRequestUpdate userRequest, UUID id) {
+        UserEntity user = modelMapper.map(userRequest, UserEntity.class);
+        user.setId(id);
+        return ResponseEntity.ok(modelMapper.map(userService.update(user), UserResponse.class));
+    }
+
+    @Override
+    public ResponseEntity<?> delete(UUID id) {
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
