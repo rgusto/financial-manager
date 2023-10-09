@@ -1,0 +1,6 @@
+CREATE TABLE accounts (
+    id UUID PRIMARY KEY UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    balance MONEY NOT NULL
+);

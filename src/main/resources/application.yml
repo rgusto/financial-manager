@@ -5,4 +5,7 @@ spring:
     username: postgres
     url: jdbc:postgresql://localhost:5432/financial-manager
     password: '123'
-
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}
