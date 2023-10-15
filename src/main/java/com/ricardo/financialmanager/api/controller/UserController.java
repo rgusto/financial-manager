@@ -9,6 +9,7 @@ import com.ricardo.financialmanager.domain.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -37,12 +38,14 @@ public class UserController implements UserAPI {
     }
 
     @Override
+    @Transactional
     public UserResponse create(UserRequest userRequest) {
         UserEntity user = modelMapper.map(userRequest, UserEntity.class);
         return modelMapper.map(userService.create(user), UserResponse.class);
     }
 
     @Override
+    @Transactional
     public ResponseEntity<UserResponse> update(UserUpdateRequest userRequest, UUID id) {
         UserEntity user = modelMapper.map(userRequest, UserEntity.class);
         user.setId(id);
@@ -50,6 +53,7 @@ public class UserController implements UserAPI {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<?> delete(UUID id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();

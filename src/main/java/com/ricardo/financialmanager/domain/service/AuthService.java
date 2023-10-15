@@ -8,24 +8,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 public class AuthService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
-    public UserDetails findByLogin(String login) {
-        return userRepository.findByLogin(login);
-    }
-
-    public UserEntity findById(UUID id) {
-        return userRepository.findById(id).orElse(null);
-    }
 
     public void signIn(UserEntity user) {
-        UserEntity userDb = findById(user.getId());
+        UserDetails userDb = loadUserByUsername(user.getLogin());
     }
 
     @Override
