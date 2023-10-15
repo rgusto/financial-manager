@@ -3,13 +3,15 @@ package com.ricardo.financialmanager.domain.service;
 import com.ricardo.financialmanager.domain.entity.UserEntity;
 import com.ricardo.financialmanager.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class UserService  {
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -23,6 +25,7 @@ public class UserService  {
     }
 
     public UserEntity create(UserEntity user) {
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -31,6 +34,7 @@ public class UserService  {
         userDb.setFirstName(user.getFirstName());
         userDb.setLastName(user.getLastName());
         userDb.setEmail(user.getEmail());
+        userDb.setUpdatedAt(LocalDateTime.now());
         return userRepository.save(userDb);
     }
 
