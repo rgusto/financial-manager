@@ -1,0 +1,12 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/financial-manager
+    password: '123'
+api:
+  security:
+    token:
+      issuer: financial-manager
+      secret: ${JWT_SECRET:my-secret-key}

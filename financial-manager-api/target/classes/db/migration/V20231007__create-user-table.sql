@@ -1,0 +1,13 @@
+CREATE TABLE users (
+    id UUID PRIMARY KEY UNIQUE NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    login VARCHAR(255) NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE INDEX ix_users_01 ON users (login);
