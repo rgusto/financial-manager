@@ -8,4 +8,5 @@ spring:
 api:
   security:
     token:
+      issuer: financial-manager
       secret: ${JWT_SECRET:my-secret-key}
