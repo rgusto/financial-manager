@@ -125,7 +125,7 @@ header .image-text .header-text {
   margin-top: -2px;
 }
 
-.sidebar header .toggle {
+.sidebar header .sidebar-toggle {
   position: absolute;
   top: 50%;
   right: -25px;
@@ -142,11 +142,11 @@ header .image-text .header-text {
   transition: var(--tran-03);
 }
 
-body.dark .sidebar header .toggle {
+body.dark .sidebar header .sidebar-toggle {
   color: var(--toggle-color);
 }
 
-.sidebar.close header .toggle {
+.sidebar.close header .sidebar-toggle {
   transform: translateY(-50%);
 }
 
@@ -232,7 +232,7 @@ body.dark .menu-bar .mode i.moon {
   opacity: 0;
 }
 
-.menu-bar .mode .toggle-switch {
+.menu-bar .mode .mode-toggle-switch {
   position: absolute;
   right: 0;
   display: flex;
@@ -246,7 +246,7 @@ body.dark .menu-bar .mode i.moon {
 
 }
 
-.toggle-switch .switch {
+.mode-toggle-switch .mode-switch {
   position: relative;
   height: 22px;
   width: 44px;
@@ -254,7 +254,7 @@ body.dark .menu-bar .mode i.moon {
   background: var(--toggle-color);
 }
 
-.switch::before {
+.mode-switch::before {
   content: "";
   position: absolute;
   height: 15px;
@@ -267,7 +267,7 @@ body.dark .menu-bar .mode i.moon {
   transition: var(--tran-03);
 }
 
-body.dark .switch::before {
+body.dark .mode-switch::before {
   left: 24px;
 }
 
