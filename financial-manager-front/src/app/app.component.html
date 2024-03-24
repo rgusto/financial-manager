@@ -1,34 +1,94 @@
-<nav class="nav-menu">
-  <div class="btn-expand-container">
-    <span class="material-icons md-light md-24 md-pointer" id="btn-expand">menu</span>
+<nav class="sidebar close">
+  <header>
+    <div class="image-text">
+      <span class="image">
+        <img src="../assets/img/logo.png" alt="logo">
+      </span>
+
+      <div class="text header-text">
+        <span class="title">Money</span>
+        <span class="subtitle">Financial manager</span>
+      </div>
+    </div>
+
+    <i class='bx bx-chevron-right toggle'></i>
+  </header>
+
+  <div class="menu-bar">
+
+    <div class="menu">
+      <li class="search-box">
+        <i class='bx bx-search icon'></i>
+        <input type="text" placeholder="Search...">
+      </li>
+      <ul class="menu-links">
+        <li class="nav-link">
+          <a href="#">
+            <i class='bx bx-home-alt icon'></i>
+            <span class="text nav-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a href="#">
+            <i class='bx bx-list-ul icon'></i>
+            <span class="text nav-text">Transações</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a href="#">
+            <i class='bx bxs-bank icon' ></i>
+            <span class="text nav-text">Contas</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a href="#">
+            <i class='bx bx-category-alt icon' ></i>
+            <span class="text nav-text">Categorias</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a href="#">
+            <i class='bx bx-calendar icon' ></i>
+            <span class="text nav-text">Planejamentos</span>
+          </a>
+        </li>
+        <li class="nav-link">
+          <a href="#">
+            <i class='bx bx-cog icon' ></i>
+            <span class="text nav-text">Configurações</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="bottom-content">
+
+      <li class="">
+        <a href="#">
+          <i class='bx bx-log-out icon' ></i>
+          <span class="text nav-text">Sair</span>
+        </a>
+      </li>
+
+      <li class="mode">
+        <div class="moon-sun">
+          <i class='bx bx-moon icon moon' ></i>
+          <i class='bx bx-sun icon sun' ></i>
+        </div>
+        <span class="mode-text text">Escuro</span>
+        <div class="toggle-switch">
+          <span class="switch"></span>
+        </div>
+      </li>
+
+    </div>
+
   </div>
-  <ul>
-    <li class="menu-item active">
-      <a href="#">
-        <span class="material-icons md-light md-24 md-margin-10">home</span>
-        <span class="text-link">Início</span>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="#">
-        <span class="material-icons md-light md-24 md-margin-10">currency_exchange</span>
-        <span class="text-link">Transações</span>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="#">
-        <span class="material-icons md-light md-24 md-margin-10">account_balance</span>
-        <span class="text-link">Contas</span>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="#">
-        <span class="material-icons md-light md-24 md-margin-10">category</span>
-        <span class="text-link">Categorias</span>
-      </a>
-    </li>
-  </ul>
 </nav>
 
+<section class="home">
+  <div class="text">Dashboard</div>
+</section>
 
 <router-outlet />

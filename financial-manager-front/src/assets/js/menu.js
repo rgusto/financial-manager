@@ -1,21 +1,23 @@
-var menuItem = document.querySelectorAll('.menu-item');
+const body = document.querySelector("body"),
+  sidebar = body.querySelector(".sidebar"),
+  toggle = body.querySelector(".toggle"),
+  searchBtn = body.querySelector(".search-box"),
+  modeSwitch = body.querySelector(".toggle-switch"),
+  modeText = body.querySelector(".mode-text");
 
-function selectLink() {
-  menuItem.forEach(element => {
-    element.classList.remove('active');
+  toggle.addEventListener("click", () => {
+    sidebar.classList.toggle("close");
   });
-  this.classList.add('active');
-}
 
+  searchBtn.addEventListener("click", () => {
+    sidebar.classList.remove("close");
+  });
 
-menuItem.forEach(element => {
-  element.addEventListener('click', selectLink);
-});
-
-
-var btnExpand = document.querySelector('#btn-expand');
-var navMenu = document.querySelector('.nav-menu');
-
-btnExpand.addEventListener('click', function(){
-  navMenu.classList.toggle('expand');
-})
+  modeSwitch.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    if (body.classList.contains("dark")) {
+      modeText.innerText = "Claro";
+    } else {
+      modeText.innerText = "Escuro";
+    }
+  });
