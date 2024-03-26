@@ -1,0 +1,37 @@
+.card {
+  border-radius: 10px;
+  background: var(--component-color);
+}
+
+.card-title{
+  font-family: inherit;
+}
+
+.card-subtitle{
+  font-family: inherit;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.default-table {
+  background: var(--component-color);
+}
+
+th {
+  border-bottom-color: var(--text-color);
+}
+
+tr, .card, .card-subtitle {
+  color: var(--text-color);
+  transition: var(--tran-05);
+}
+
+/*=====================================*/
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
