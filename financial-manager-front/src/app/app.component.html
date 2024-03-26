@@ -23,7 +23,7 @@
       </li>
       <ul class="menu-links">
         <li class="nav-link">
-          <a href="#">
+          <a routerLink="/users" routerLinkActive="active">
             <i class='bx bx-home-alt icon'></i>
             <span class="text nav-text">Dashboard</span>
           </a>
@@ -36,25 +36,25 @@
         </li>
         <li class="nav-link">
           <a href="#">
-            <i class='bx bxs-bank icon' ></i>
+            <i class='bx bxs-bank icon'></i>
             <span class="text nav-text">Contas</span>
           </a>
         </li>
         <li class="nav-link">
           <a href="#">
-            <i class='bx bx-category-alt icon' ></i>
+            <i class='bx bx-category-alt icon'></i>
             <span class="text nav-text">Categorias</span>
           </a>
         </li>
         <li class="nav-link">
-          <a href="">
-            <i class='bx bx-calendar icon' ></i>
+          <a href="#">
+            <i class='bx bx-calendar icon'></i>
             <span class="text nav-text">Planejamentos</span>
           </a>
         </li>
         <li class="nav-link">
           <a href="#">
-            <i class='bx bx-cog icon' ></i>
+            <i class='bx bx-cog icon'></i>
             <span class="text nav-text">Configurações</span>
           </a>
         </li>
@@ -66,15 +66,15 @@
 
       <li class="">
         <a href="#">
-          <i class='bx bx-log-out icon' ></i>
+          <i class='bx bx-log-out icon'></i>
           <span class="text nav-text">Sair</span>
         </a>
       </li>
 
       <li class="mode">
         <div class="moon-sun">
-          <i class='bx bx-moon icon moon' ></i>
-          <i class='bx bx-sun icon sun' ></i>
+          <i class='bx bx-moon icon moon'></i>
+          <i class='bx bx-sun icon sun'></i>
         </div>
         <span class="mode-text text">Escuro</span>
         <div class="mode-toggle-switch">
@@ -88,7 +88,5 @@
 </nav>
 
 <section class="home">
-  <div class="text">Dashboard</div>
+  <router-outlet></router-outlet>
 </section>
-
-<router-outlet />
