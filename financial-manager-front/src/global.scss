@@ -1,0 +1,106 @@
+.card {
+  border-radius: 10px;
+  background: var(--component-color);
+  color: var(--text-color);
+  transition: var(--tran-03);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+}
+
+.card-title {
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.card-subtitle {
+  font-family: inherit;
+}
+
+.card-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-toolbar-button {
+  color: var(--component-color);
+  font-size: 30px;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.card-content {
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+table {
+  background: var(--component-color);
+  min-height: calc(100vh - 90px);
+}
+
+th {
+  border-bottom-color: var(--text-color);
+  background-color: var(--body-color);
+}
+
+tr {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: inherit;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+th,
+td,
+tr {
+  color: inherit;
+  font-size: 14px;
+}
+
+.table-action-button {
+  font-size: 24px;
+  padding: 5px;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*=================== OVERRIDINGS ====================*/
+
+:host ::ng-deep .p-progress-spinner-circle {
+  stroke: var(--primary-color) !important;
+}
+
+:host ::ng-deep .p-paginator,
+:host ::ng-deep .p-paginator-element,
+:host ::ng-deep .p-dropdown-label {
+  font-size: 13.5px;
+  color: var(--text-color);
+  background: var(--component-color);
+  transition: var(--tran-03);
+}
+
+:host ::ng-deep .p-dropdown {
+  height: 30px;
+  align-items: center;
+  background: var(--component-color);
+}

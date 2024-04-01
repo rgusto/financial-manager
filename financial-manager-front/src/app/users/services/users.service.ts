@@ -14,7 +14,7 @@ export class UsersService {
 
   findAll() {
     return this.httpClient.get<User[]>(this.API).pipe(
-      delay(60000),
+      delay(3000),
       tap((users: any) => console.log(users))
     );
   }

@@ -1,4 +1,4 @@
-CREATE TABLE accounts (
+CREATE TABLE bank_account (
     id UUID PRIMARY KEY UNIQUE NOT NULL,
     name VARCHAR(100) NOT NULL,
     type VARCHAR(100) NOT NULL,
@@ -9,6 +9,6 @@ CREATE TABLE accounts (
     deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-ALTER TABLE accounts ADD CONSTRAINT fk_accounts_user_01 FOREIGN KEY (user_id) REFERENCES users (id);
-CREATE INDEX ix_accounts_01 ON accounts (user_id);
+ALTER TABLE bank_account ADD CONSTRAINT fk_bank_account_user_01 FOREIGN KEY (user_id) REFERENCES users (id);
+CREATE INDEX ix_bank_account_01 ON bank_account (user_id);
 

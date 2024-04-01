@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTableModule } from '@angular/material/table';
+import { TableModule } from 'primeng/table';
 import { Observable, catchError, of } from 'rxjs';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { User } from '../model/user';
 import { UsersService } from '../services/users.service';
@@ -17,15 +14,11 @@ import { error } from 'console';
   standalone: true,
   imports: [
     CommonModule,
-    MatPaginator,
-    MatPaginatorModule,
-    MatTableModule,
-    MatButtonModule,
-    MatCardModule,
-    MatProgressSpinnerModule
+    TableModule,
+    ProgressSpinnerModule
   ],
   templateUrl: './users.component.html',
-  styleUrl: './users.component.scss',
+  styleUrls: ['../../../global.scss','./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
   users$: Observable<User[]>;

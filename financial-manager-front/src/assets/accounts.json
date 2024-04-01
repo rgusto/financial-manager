@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "7b46d27b-2b58-471f-9803-ea109806a06c",
+    "name" : "Inter",
+    "type": "CHECKING",
+    "balance": 1745.89,
+    "user": {
+      "_id": "7b46d27b-2b58-471f-9803-ea109806a06c",
+      "firstName" : "Ricardo",
+      "lastName": "Augusto",
+      "email": "bla@bla.com"
+    }
+  }
+]

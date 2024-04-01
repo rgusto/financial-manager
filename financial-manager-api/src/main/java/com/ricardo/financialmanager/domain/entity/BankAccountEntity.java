@@ -1,7 +1,10 @@
 package com.ricardo.financialmanager.domain.entity;
 
-import com.ricardo.financialmanager.domain.enums.AccountTypeEnum;
+import com.ricardo.financialmanager.domain.enums.BankAccountTypeEnum;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,20 +15,24 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 
 @Data
-@Entity(name = "accounts")
-@Table(name = "accounts")
+@Entity(name = "bank_account")
+@Table(name = "bank_account")
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AccountEntity extends AbstractEntity {
+public class BankAccountEntity extends AbstractEntity {
 
     private String name;
 
-    private AccountTypeEnum type;
+    @Enumerated(EnumType.STRING)
+    private BankAccountTypeEnum type;
 
     private BigDecimal balance;
 
+    // private UUID userId;
+
+    @ManyToOne
     private UserEntity user;
 
 }
