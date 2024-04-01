@@ -99,6 +99,10 @@ tr {
   transition: var(--tran-03);
 }
 
+:host ::ng-deep .p-paginator-current {
+  color: var(--text-color);
+}
+
 :host ::ng-deep .p-dropdown {
   height: 30px;
   align-items: center;

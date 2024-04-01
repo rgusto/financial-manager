@@ -14,7 +14,7 @@ export class AccountsService {
 
   findAll() {
     return this.httpClient.get<Account[]>(this.API).pipe(
-      delay(3000),
+       delay(3000),
       tap((accounts: any) => console.log(accounts))
     );
   }

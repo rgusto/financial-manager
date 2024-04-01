@@ -11,14 +11,14 @@ import { Account } from './../model/account';
 
 import { Footer } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { TooltipModule } from 'primeng/tooltip';
 import { MessageDialogComponent } from '../../shared/components/message-dialog/message-dialog.component';
 import { AccountsService } from '../services/accounts.service';
-import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
   selector: 'app-accounts',
   standalone: true,
-  imports: [CommonModule, TableModule, ProgressSpinnerModule, ButtonModule, ToolbarModule],
+  imports: [CommonModule, TableModule, ProgressSpinnerModule, ButtonModule, TooltipModule],
   templateUrl: './accounts.component.html',
   styleUrls: ['../../../global.scss', './accounts.component.scss'],
   providers: [DialogService, { provide: LOCALE_ID, useValue: 'pt-BR' }],

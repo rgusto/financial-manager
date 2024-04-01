@@ -1,4 +1,5 @@
 <div class="card">
+  @if (accounts$ | async; as accounts) {
 
   <div class="card-header">
     <div>
@@ -6,14 +7,13 @@
       <div class="card-subtitle"></div>
     </div>
     <div class="card-toolbar">
-      <button pButton class="card-toolbar-button" style="margin-right: 10px;"><i class='bx bx-plus' ></i></button>
-      <button pButton class="card-toolbar-button"><i class='bx bx-printer' ></i></button>
+      <button pButton class="card-toolbar-button" style="margin-right: 10px;"><i class='bx bx-plus'></i></button>
+      <button pButton class="card-toolbar-button"><i class='bx bx-printer'></i></button>
       <button pButton class="card-toolbar-button"><i class='bx bx-export'></i></button>
     </div>
   </div>
 
   <div class="card-content">
-    @if (accounts$ | async; as accounts) {
     <p-table [value]="accounts" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
       [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack" [breakpoint]="'680px'"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registro(s)"
@@ -32,17 +32,18 @@
           <td><span class="p-column-title">Tipo</span>{{ account.type }}</td>
           <td><span class="p-column-title">Saldo</span>{{ getFormattedCurrencyValue(account.balance) }}</td>
           <td>
-            <button pButton class="table-action-button"><i class='bx bxs-edit' ></i></button>
-            <button pButton class="table-action-button"><i class='bx bx-trash' ></i></button>
+            <button pButton class="table-action-button" pTooltip="Visualizar detalhes" tooltipPosition="bottom" ><i class='bx bx-detail'></i></button>
+            <button pButton class="table-action-button"><i class='bx bxs-edit'></i></button>
+            <button pButton class="table-action-button"><i class='bx bx-trash'></i></button>
           </td>
         </tr>
       </ng-template>
     </p-table>
-    } @else {
-    <div class="loading-spinner">
-      <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
-    </div>
-    }
-  </div>
 
+  </div>
+  } @else {
+  <div class="loading-spinner">
+    <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
+  </div>
+  }
 </div>
