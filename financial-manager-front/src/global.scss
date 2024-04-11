@@ -50,6 +50,7 @@ table {
 th {
   border-bottom-color: var(--text-color);
   background-color: var(--body-color);
+  transition: var(--tran-03);
 }
 
 tr {

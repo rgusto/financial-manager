@@ -16,8 +16,6 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
@@ -205,6 +203,11 @@ body.dark .sidebar header .sidebar-toggle {
   justify-content: space-between;
 }
 
+.sidebar .menu-links {
+  margin: 0;
+  padding: 0;
+}
+
 .menu-bar .mode {
   position: relative;
   border-radius: 6px;
@@ -245,7 +248,6 @@ body.dark .menu-bar .mode i.moon {
   cursor: pointer;
   border-radius: 6px;
   background: var(--primary-color-light);
-
 }
 
 .mode-toggle-switch .mode-switch {

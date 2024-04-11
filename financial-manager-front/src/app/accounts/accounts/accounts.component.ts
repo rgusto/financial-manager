@@ -6,7 +6,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, find, of } from 'rxjs';
 import { Account } from './../model/account';
 
 import { Footer } from 'primeng/api';
@@ -24,7 +24,7 @@ import { AccountsService } from '../services/accounts.service';
   providers: [DialogService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
 })
 export class AccountsComponent implements OnInit, OnDestroy {
-  accounts$: Observable<Account[]>;
+  accounts$: Observable<Account[]> | undefined;
   displayedColumns = ['name', 'type', 'balance'];
   dynamicDialogRef: DynamicDialogRef | undefined;
 
@@ -32,12 +32,7 @@ export class AccountsComponent implements OnInit, OnDestroy {
     private accountsService: AccountsService,
     public dialogService: DialogService
   ) {
-    this.accounts$ = this.accountsService.findAll().pipe(
-      catchError((error) => {
-        this.onError('Erro ao carregar contas.');
-        return of([]);
-      })
-    );
+    this.findAll();
   }
 
   ngOnInit(): void {}
@@ -50,6 +45,15 @@ export class AccountsComponent implements OnInit, OnDestroy {
 
   onError(errorMessage: string) {
     this.showDialog(errorMessage);
+  }
+
+  findAll(): void {
+    this.accounts$ = this.accountsService.findAll().pipe(
+      catchError((error) => {
+        this.onError('Erro ao carregar contas.');
+        return of([]);
+      })
+    );
   }
 
   showDialog(message: string): void {
