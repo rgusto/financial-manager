@@ -43,17 +43,17 @@ export class AccountsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onError(errorMessage: string) {
-    this.showDialog(errorMessage);
-  }
-
   findAll(): void {
     this.accounts$ = this.accountsService.findAll().pipe(
       catchError((error) => {
-        this.onError('Erro ao carregar contas.');
+        this.onError('Erro ao carregar contas: ' + error.error.message);
         return of([]);
       })
     );
+  }
+
+  onError(errorMessage: string) {
+    this.showDialog(errorMessage);
   }
 
   showDialog(message: string): void {

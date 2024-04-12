@@ -48,27 +48,20 @@ table {
 }
 
 th {
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-bottom-color: var(--text-color);
+  color: inherit;
   background-color: var(--body-color);
   transition: var(--tran-03);
 }
 
-tr {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  background-color: inherit;
-}
-
-th,
-td {
-  padding: 10px;
-}
-
-th,
-td,
-tr {
+tr, td {
+  padding-top: 5px;
+  padding-bottom: 5px;
   color: inherit;
   font-size: 14px;
+  background-color: inherit;
 }
 
 .table-action-button {
@@ -93,10 +86,10 @@ tr {
 
 :host ::ng-deep .p-paginator,
 :host ::ng-deep .p-paginator-element,
-:host ::ng-deep .p-dropdown-label {
-  font-size: 13.5px;
+:host ::ng-deep .p-element.p-dropdown-label {
   color: var(--text-color);
   background: var(--component-color);
+  font-size: 13.5px;
   transition: var(--tran-03);
 }
 
@@ -104,8 +97,15 @@ tr {
   color: var(--text-color);
 }
 
-:host ::ng-deep .p-dropdown {
-  height: 30px;
+:host ::ng-deep .p-paginator-rpp-options {
+  font-size: inherit;
   align-items: center;
+  height: fit-content;
   background: var(--component-color);
+  color: var(--text-color);
 }
+
+:host ::ng-deep svg.p-icon.p-sortable-column-icon {
+  color: var(--primary-color);
+}
+
