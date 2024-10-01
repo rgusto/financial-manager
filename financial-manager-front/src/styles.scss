@@ -92,7 +92,7 @@ body.dark {
 .sidebar li .icon,
 .sidebar li .text {
   color: var(--text-color);
-  transition: var(--tran-02);
+  transition: var(--tran-04);
 }
 
 .sidebar header {
@@ -139,7 +139,7 @@ header .image-text .header-text {
   border-radius: 50%;
   color: var(--sidebar-color);
   font-size: 22px;
-  transition: var(--tran-03);
+  transition: var(--tran-02);
 }
 
 body.dark .sidebar header .sidebar-toggle {
