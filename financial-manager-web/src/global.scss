@@ -15,7 +15,7 @@
 
 .card-title {
   font-family: inherit;
-  font-size: 22px;
+  font-size: 1.7em;
   font-weight: bold;
 }
 
@@ -25,15 +25,21 @@
 
 .card-toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }
 
 .card-toolbar-button {
   color: var(--component-color);
-  font-size: 30px;
+  font-size: 2em;
   border-radius: 50%;
   padding: 5px;
+}
+
+.card-toolbar-separator {
+  color: transparent;
+  background-color: transparent;
 }
 
 .card-content {
@@ -56,12 +62,18 @@ th {
   transition: var(--tran-03);
 }
 
-tr, td {
+tr,
+td {
   padding-top: 5px;
   padding-bottom: 5px;
   color: inherit;
   font-size: 14px;
   background-color: inherit;
+}
+
+.table-action-toolbar {
+  display: flex;
+  align-items: center;
 }
 
 .table-action-button {
@@ -108,4 +120,3 @@ tr, td {
 :host ::ng-deep svg.p-icon.p-sortable-column-icon {
   color: var(--primary-color);
 }
-

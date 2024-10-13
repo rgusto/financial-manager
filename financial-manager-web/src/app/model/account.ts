@@ -1,4 +1,4 @@
-import { User } from "../../users/model/user";
+import { User } from "./user";
 
 export interface Account {
   _id: string;

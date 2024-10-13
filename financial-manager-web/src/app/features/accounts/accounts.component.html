@@ -33,9 +33,12 @@
           <td><span class="p-column-title">Tipo</span>{{ account.type }}</td>
           <td><span class="p-column-title">Saldo</span>{{ getFormattedCurrencyValue(account.balance) }}</td>
           <td>
-            <button pButton class="table-action-button" pTooltip="Visualizar detalhes" tooltipPosition="bottom" ><i class='bx bx-detail'></i></button>
-            <button pButton class="table-action-button"><i class='bx bxs-edit'></i></button>
-            <button pButton class="table-action-button"><i class='bx bx-trash'></i></button>
+            <div class="table-action-toolbar">
+              <button pButton class="table-action-button" pTooltip="Visualizar detalhes" tooltipPosition="bottom"><i
+                  class='bx bx-detail'></i></button>
+              <button pButton class="table-action-button"><i class='bx bxs-edit'></i></button>
+              <button pButton class="table-action-button"><i class='bx bx-trash'></i></button>
+            </div>
           </td>
         </tr>
       </ng-template>

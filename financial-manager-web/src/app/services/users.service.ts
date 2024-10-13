@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 import { User } from '../model/user';
 
@@ -8,14 +8,11 @@ import { User } from '../model/user';
   providedIn: 'root',
 })
 export class UsersService {
-  private readonly API = './assets/users.json';
+  private readonly API = 'api/v1/users';
 
   constructor(private httpClient: HttpClient) {}
 
   findAll() {
-    return this.httpClient.get<User[]>(this.API).pipe(
-      delay(3000),
-      tap((users: any) => console.log(users))
-    );
+    return this.httpClient.get<User[]>(this.API, {observe: "body"});
   }
 }

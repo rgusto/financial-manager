@@ -7,7 +7,6 @@ import com.ricardo.financialmanager.api.model.response.UserResponse;
 import com.ricardo.financialmanager.domain.entity.UserEntity;
 import com.ricardo.financialmanager.domain.service.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,11 +17,14 @@ import java.util.UUID;
 @RestController
 public class UserController implements UserAPI {
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(ModelMapper modelMapper, UserService userService) {
+        this.modelMapper = modelMapper;
+        this.userService = userService;
+    }
 
     @Override
     public List<UserResponse> findAll() {

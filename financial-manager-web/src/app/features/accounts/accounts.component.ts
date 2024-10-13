@@ -1,4 +1,5 @@
 import { CommonModule, formatCurrency } from '@angular/common';
+import { Account } from '../../model/account';
 
 import { Component, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 
@@ -6,14 +7,13 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
-import { Observable, catchError, find, of } from 'rxjs';
-import { Account } from './../model/account';
+import { Observable, catchError, of } from 'rxjs';
 
 import { Footer } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
+import { AccountsService } from '../../services/accounts.service';
 import { MessageDialogComponent } from '../../shared/components/message-dialog/message-dialog.component';
-import { AccountsService } from '../services/accounts.service';
 
 @Component({
   selector: 'app-accounts',
