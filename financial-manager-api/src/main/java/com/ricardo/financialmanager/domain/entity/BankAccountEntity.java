@@ -30,8 +30,6 @@ public class BankAccountEntity extends AbstractEntity {
 
     private BigDecimal balance;
 
-    // private UUID userId;
-
     @ManyToOne
     private UserEntity user;
 

@@ -31,11 +31,11 @@
       [(selection)]="selectedUsers" dataKey="id">
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
-          <th pSortableColumn="name" style="width:20%">Nome<p-sortIcon field="firstName"></p-sortIcon></th>
-          <th pSortableColumn="type" style="width:20%">Sobrenome<p-sortIcon field="lastName"></p-sortIcon></th>
-          <th pSortableColumn="balance" style="width:20%">E-mail<p-sortIcon field="email"></p-sortIcon></th>
-          <th style="width:20%">Ações</th>
+          <th scope="col" style="width: 4rem"><p-tableHeaderCheckbox /></th>
+          <th scope="col" pSortableColumn="name" style="width:20%">Nome<p-sortIcon field="firstName"></p-sortIcon></th>
+          <th scope="col" pSortableColumn="type" style="width:20%">Sobrenome<p-sortIcon field="lastName"></p-sortIcon></th>
+          <th scope="col" pSortableColumn="balance" style="width:20%">E-mail<p-sortIcon field="email"></p-sortIcon></th>
+          <th scope="col" style="width:20%">Ações</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
