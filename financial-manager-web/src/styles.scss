@@ -282,7 +282,6 @@ body.dark .mode-switch::before {
   width: calc(100% - 250px);
   background: var(--body-color);
   transition: var(--tran-05);
-  padding: 18px 20px;
 }
 
 .sidebar.close ~ .home {

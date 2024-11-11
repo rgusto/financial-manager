@@ -120,3 +120,8 @@ td {
 :host ::ng-deep svg.p-icon.p-sortable-column-icon {
   color: var(--primary-color);
 }
+
+:host ::ng-deep .p-datatable-wrapper {
+  position: sticky;
+  height: calc(100vh - 180px);
+}
