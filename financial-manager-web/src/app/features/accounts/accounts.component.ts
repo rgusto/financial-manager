@@ -1,47 +1,44 @@
 import { CommonModule, formatCurrency } from '@angular/common';
 import { Account } from '../../model/account';
 
-import { Component, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
-
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Component, OnInit } from '@angular/core';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
 import { Observable, catchError, of } from 'rxjs';
 
-import { Footer } from 'primeng/api';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { AccountsService } from '../../services/accounts.service';
-import { MessageDialogComponent } from '../../shared/components/message-dialog/message-dialog.component';
+import { MessageType } from '../../shared/enums/message-type';
 
 @Component({
   selector: 'app-accounts',
   standalone: true,
-  imports: [CommonModule, TableModule, ProgressSpinnerModule, ButtonModule, TooltipModule],
+  imports: [
+    CommonModule,
+    TableModule,
+    ProgressSpinnerModule,
+    ButtonModule,
+    TooltipModule,
+  ],
   templateUrl: './accounts.component.html',
   styleUrls: ['../../../global.scss', './accounts.component.scss'],
-  providers: [DialogService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
 })
-export class AccountsComponent implements OnInit, OnDestroy {
+export class AccountsComponent implements OnInit {
   accounts$: Observable<Account[]> | undefined;
   displayedColumns = ['name', 'type', 'balance'];
-  dynamicDialogRef: DynamicDialogRef | undefined;
 
   constructor(
-    private accountsService: AccountsService,
-    public dialogService: DialogService
+    protected accountsService: AccountsService,
+    protected messageService: MessageService
   ) {
     this.findAll();
   }
 
   ngOnInit(): void {}
-
-  ngOnDestroy() {
-    if (this.dynamicDialogRef) {
-      this.dynamicDialogRef.close();
-    }
-  }
 
   findAll(): void {
     this.accounts$ = this.accountsService.findAll().pipe(
@@ -52,20 +49,21 @@ export class AccountsComponent implements OnInit, OnDestroy {
     );
   }
 
-  onError(errorMessage: string) {
-    this.showDialog(errorMessage);
+  onError(error: any) {
+    if (error instanceof HttpErrorResponse) {
+      this.showDialog(
+        error.error ? error.error.message : error.message,
+        MessageType.ERROR
+      );
+    } else {
+      this.showDialog(error, MessageType.ERROR);
+    }
   }
 
-  showDialog(message: string): void {
-    this.dynamicDialogRef = this.dialogService.open(MessageDialogComponent, {
-      header: 'Erro',
-      modal: true,
-      width: '500px',
-      height: '200px',
-      data: { type: 'E', message: message },
-      templates: {
-        footer: Footer,
-      },
+  showDialog(message: string, type: MessageType = MessageType.INFO): void {
+    this.messageService.add({
+      severity: type,
+      detail: message,
     });
   }
 

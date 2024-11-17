@@ -46,7 +46,7 @@ body.dark {
   width: 250px;
   padding: 10px 14px;
   background: var(--sidebar-color);
-  transition: var(--tran-05);
+  transition: var(--tran-03);
   z-index: 100;
 }
 
@@ -58,7 +58,7 @@ body.dark {
   font-size: 16px;
   font-weight: 500;
   color: var(--text-color);
-  transition: var(--tran-04);
+  transition: var(--tran-02);
   white-space: nowrap;
   opacity: 1;
 }
