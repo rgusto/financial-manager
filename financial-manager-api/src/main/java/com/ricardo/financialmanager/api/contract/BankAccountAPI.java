@@ -1,11 +1,8 @@
 package com.ricardo.financialmanager.api.contract;
 
-import com.ricardo.financialmanager.api.model.request.BankAccountRequest;
-import com.ricardo.financialmanager.api.model.response.BankAccountResponse;
-import jakarta.validation.Valid;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,8 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.util.List;
-import java.util.UUID;
+import com.ricardo.financialmanager.api.model.request.BankAccountRequest;
+import com.ricardo.financialmanager.api.model.response.BankAccountResponse;
+
+import jakarta.validation.Valid;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
 @RequestMapping("/api/v1/bank-accounts")
 public interface BankAccountAPI {
@@ -45,6 +47,6 @@ public interface BankAccountAPI {
     @DeleteMapping("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<?> delete(@PathVariable UUID id);
+    public ResponseEntity<Void> delete(@PathVariable UUID id);
 
 }

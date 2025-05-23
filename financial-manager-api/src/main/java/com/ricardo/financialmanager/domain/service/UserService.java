@@ -1,12 +1,11 @@
 package com.ricardo.financialmanager.domain.service;
 
-import com.ricardo.financialmanager.domain.entity.UserEntity;
-import com.ricardo.financialmanager.domain.exception.EntityInUseException;
-import com.ricardo.financialmanager.domain.exception.UserEmailAlreadyExistsException;
-import com.ricardo.financialmanager.domain.exception.UserLoginAlreadyExistsException;
-import com.ricardo.financialmanager.domain.exception.UserNotFoundException;
-import com.ricardo.financialmanager.domain.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,17 +13,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import com.ricardo.financialmanager.domain.entity.UserEntity;
+import com.ricardo.financialmanager.domain.exception.EntityInUseException;
+import com.ricardo.financialmanager.domain.exception.UserEmailAlreadyExistsException;
+import com.ricardo.financialmanager.domain.exception.UserLoginAlreadyExistsException;
+import com.ricardo.financialmanager.domain.exception.UserNotFoundException;
+import com.ricardo.financialmanager.domain.repository.UserRepository;
 
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public List<UserEntity> findAll() {
         return userRepository.findAll();
@@ -38,11 +41,11 @@ public class UserService {
     public UserEntity create(UserEntity user) {
         Optional<UserEntity> userDb = userRepository.findByEmail(user.getEmail());
         if (userDb.isPresent()) {
-            throw new UserEmailAlreadyExistsException(user.getId(), user.getEmail());
+            throw new UserEmailAlreadyExistsException(user.getEmail());
         }
         UserDetails userDetails = userRepository.findByLogin(user.getLogin());
         if (Objects.nonNull(userDetails)) {
-            throw new UserLoginAlreadyExistsException(user.getId(), user.getLogin());
+            throw new UserLoginAlreadyExistsException(user.getLogin());
         }
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         return userRepository.save(user);

@@ -1,27 +1,29 @@
 package com.ricardo.financialmanager.api.controller;
 
+import java.util.List;
+import java.util.UUID;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.ricardo.financialmanager.api.contract.BankAccountAPI;
 import com.ricardo.financialmanager.api.model.request.BankAccountRequest;
 import com.ricardo.financialmanager.api.model.response.BankAccountResponse;
 import com.ricardo.financialmanager.domain.entity.BankAccountEntity;
 import com.ricardo.financialmanager.domain.service.BankAccountService;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class BankAccountController implements BankAccountAPI {
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+    private final BankAccountService bankAccountService;
 
-    @Autowired
-    private BankAccountService bankAccountService;
+    public BankAccountController(ModelMapper modelMapper, BankAccountService bankAccountService) {
+        this.modelMapper = modelMapper;
+        this.bankAccountService = bankAccountService;
+    }
 
     @Override
     public List<BankAccountResponse> findAll() {
@@ -53,9 +55,8 @@ public class BankAccountController implements BankAccountAPI {
 
     @Override
     @Transactional
-    public ResponseEntity<?> delete(UUID id) {
+    public ResponseEntity<Void> delete(UUID id) {
         bankAccountService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }

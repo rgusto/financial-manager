@@ -8,7 +8,7 @@ import { Account } from '../model/account';
 })
 export class AccountsService {
 
-  private readonly API = 'api/v1/bank-accounts';
+  private readonly API = '/api/v1/bank-accounts';
 
   constructor(private httpClient: HttpClient) {}
 

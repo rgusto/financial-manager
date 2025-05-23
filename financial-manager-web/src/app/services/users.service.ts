@@ -7,7 +7,7 @@ import { User } from '../model/user';
   providedIn: 'root',
 })
 export class UsersService {
-  private readonly API = 'api/v1/users';
+  private readonly API = '/api/v1/users';
 
   constructor(protected httpClient: HttpClient) {}
 
