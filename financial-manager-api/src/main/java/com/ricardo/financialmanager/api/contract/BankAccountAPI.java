@@ -1,8 +1,9 @@
 package com.ricardo.financialmanager.api.contract;
 
-import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +28,7 @@ public interface BankAccountAPI {
 
     @GetMapping
     @Produces(MediaType.APPLICATION_JSON)
-    public List<BankAccountResponse> findAll();
+    public Page<BankAccountResponse> findAll(Pageable pageable);
 
     @GetMapping("/{id}")
     @Produces(MediaType.APPLICATION_JSON)

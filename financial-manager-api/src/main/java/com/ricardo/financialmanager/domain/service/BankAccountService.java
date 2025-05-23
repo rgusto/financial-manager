@@ -1,27 +1,31 @@
 package com.ricardo.financialmanager.domain.service;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.ricardo.financialmanager.domain.entity.BankAccountEntity;
 import com.ricardo.financialmanager.domain.exception.BankAccountNotFoundException;
 import com.ricardo.financialmanager.domain.exception.EntityInUseException;
 import com.ricardo.financialmanager.domain.repository.BankAccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
 
 @Service
 public class BankAccountService {
 
-    @Autowired
-    private BankAccountRepository bankAccountRepository;
+    private final BankAccountRepository bankAccountRepository;
 
-    public List<BankAccountEntity> findAll() {
-        return bankAccountRepository.findAll();
+    public BankAccountService(BankAccountRepository bankAccountRepository) {
+        this.bankAccountRepository = bankAccountRepository;
+    }
+
+    public Page<BankAccountEntity> findAll(Pageable pageable) {
+        return bankAccountRepository.findAll(pageable);
     }
 
     public BankAccountEntity findById(UUID id) {

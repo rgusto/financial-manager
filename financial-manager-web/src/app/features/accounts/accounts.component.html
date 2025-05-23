@@ -1,55 +1,80 @@
 <div class="card">
-  @if (accounts$ | async; as accounts) {
-
   <div class="card-header">
     <div>
       <div class="card-title">Contas</div>
       <div class="card-subtitle"></div>
     </div>
     <div class="card-toolbar">
-      <button pButton class="card-toolbar-button" pTooltip="Atualizar" tooltipPosition="bottom" (click)="findAll()"><i
-          class='bx bx-refresh'></i></button>
-      <button pButton class="card-toolbar-button"><i class='bx bx-plus'></i></button>
-      <button pButton class="card-toolbar-button"><i class='bx bx-printer'></i></button>
-      <button pButton class="card-toolbar-button"><i class='bx bx-export'></i></button>
+      <button pButton class="card-toolbar-button" pTooltip="Atualizar" tooltipPosition="bottom" (click)="loadAccounts()">
+        <i class='bx bx-refresh'></i>
+      </button>
+      <button pButton class="card-toolbar-button">
+        <i class='bx bx-plus'></i>
+      </button>
+      <button pButton class="card-toolbar-button">
+        <i class='bx bx-printer'></i>
+      </button>
+      <button pButton class="card-toolbar-button">
+        <i class='bx bx-export'></i>
+      </button>
     </div>
   </div>
 
   <div class="card-content">
-    <p-table [value]="accounts" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-      [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack" [breakpoint]="'680px'"
-      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registro(s)"
-      [rowsPerPageOptions]="[10, 20, 30, 50]" paginatorLocale="pt-BR">
-      <ng-template pTemplate="header">
-        <tr>
-          <th scope="col" pSortableColumn="name" style="width:20%">Nome<p-sortIcon field="name"></p-sortIcon></th>
-          <th scope="col" pSortableColumn="type" style="width:20%">Tipo<p-sortIcon field="type"></p-sortIcon></th>
-          <th scope="col" pSortableColumn="balance" style="width:20%">Saldo<p-sortIcon field="balance"></p-sortIcon>
-          </th>
-          <th scope="col" style="width:20%">Ações</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-account let-rowIndex="rowIndex">
-        <tr>
-          <td><span class="p-column-title">Nome</span>{{ account.name }}</td>
-          <td><span class="p-column-title">Tipo</span>{{ account.type }}</td>
-          <td><span class="p-column-title">Saldo</span>{{ getFormattedCurrencyValue(account.balance) }}</td>
-          <td>
-            <div class="table-action-toolbar">
-              <button pButton class="table-action-button" pTooltip="Visualizar detalhes" tooltipPosition="bottom"><i
-                  class='bx bx-detail'></i></button>
-              <button pButton class="table-action-button"><i class='bx bxs-edit'></i></button>
-              <button pButton class="table-action-button"><i class='bx bx-trash'></i></button>
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-
+    @if (loading) {
+      <div class="loading-spinner">
+        <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
+      </div>
+    } @else {
+      <p-table [value]="accounts"
+               [paginator]="true"
+               [rows]="pageSize"
+               [showCurrentPageReport]="true"
+               [tableStyle]="{ 'min-width': '50rem' }"
+               responsiveLayout="stack"
+               [breakpoint]="'680px'"
+               currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registro(s)"
+               [rowsPerPageOptions]="[10, 20, 30, 50]"
+               paginatorLocale="pt-BR"
+               [totalRecords]="totalElements"
+               [first]="currentPage * pageSize"
+               (onPage)="onPageChange($event.first / pageSize)"
+               (onSort)="onSortChange($event.sortField + ',' + ($event.order === 1 ? 'asc' : 'desc'))">
+        <ng-template pTemplate="header">
+          <tr>
+            <th scope="col" pSortableColumn="name" style="width:20%">
+              Nome<p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th scope="col" pSortableColumn="type" style="width:20%">
+              Tipo<p-sortIcon field="type"></p-sortIcon>
+            </th>
+            <th scope="col" pSortableColumn="balance" style="width:20%">
+              Saldo<p-sortIcon field="balance"></p-sortIcon>
+            </th>
+            <th scope="col" style="width:20%">Ações</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-account>
+          <tr>
+            <td><span class="p-column-title">Nome</span>{{ account.name }}</td>
+            <td><span class="p-column-title">Tipo</span>{{ account.type }}</td>
+            <td><span class="p-column-title">Saldo</span>{{ getFormattedCurrencyValue(account.balance) }}</td>
+            <td>
+              <div class="table-action-toolbar">
+                <button pButton class="table-action-button" pTooltip="Visualizar detalhes" tooltipPosition="bottom">
+                  <i class='bx bx-detail'></i>
+                </button>
+                <button pButton class="table-action-button">
+                  <i class='bx bxs-edit'></i>
+                </button>
+                <button pButton class="table-action-button" (click)="deleteAccount(account.id)">
+                  <i class='bx bx-trash'></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    }
   </div>
-  } @else {
-  <div class="loading-spinner">
-    <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
-  </div>
-  }
 </div>

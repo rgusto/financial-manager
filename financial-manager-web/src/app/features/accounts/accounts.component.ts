@@ -1,17 +1,17 @@
 import { CommonModule, formatCurrency } from '@angular/common';
-import { Account } from '../../model/account';
 
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BankAccount } from '../../model/bank-account.model';
+import { BankAccountService } from '../../services/bank-account.service';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
-import { Observable, catchError, of } from 'rxjs';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
-import { AccountsService } from '../../services/accounts.service';
 import { MessageType } from '../../shared/enums/message-type';
 
 @Component({
@@ -23,30 +23,67 @@ import { MessageType } from '../../shared/enums/message-type';
     ProgressSpinnerModule,
     ButtonModule,
     TooltipModule,
+    FormsModule,
   ],
   templateUrl: './accounts.component.html',
   styleUrls: ['../../../global.scss', './accounts.component.scss'],
 })
 export class AccountsComponent implements OnInit {
-  accounts$: Observable<Account[]> | undefined;
-  displayedColumns = ['name', 'type', 'balance'];
+  accounts: BankAccount[] = [];
+  currentPage = 0;
+  pageSize = 10;
+  totalElements = 0;
+  totalPages = 0;
+  sort = 'name,asc';
+  loading = false;
 
   constructor(
-    protected accountsService: AccountsService,
+    private readonly bankAccountService: BankAccountService,
     protected messageService: MessageService
-  ) {
-    this.findAll();
+  ) {}
+
+  ngOnInit(): void {
+    this.loadAccounts();
   }
 
-  ngOnInit(): void {}
+  loadAccounts(): void {
+    this.loading = true;
+    this.bankAccountService.findAll(this.currentPage, this.pageSize, this.sort)
+      .subscribe({
+        next: (page) => {
+          this.accounts = page.content;
+          this.totalElements = page.totalElements;
+          this.totalPages = page.totalPages;
+          this.loading = false;
+        },
+        error: (error) => {
+          this.onError(error);
+          this.loading = false;
+        }
+      });
+  }
 
-  findAll(): void {
-    this.accounts$ = this.accountsService.findAll().pipe(
-      catchError((error) => {
-        this.onError('Erro ao carregar contas: ' + error.error.message);
-        return of([]);
-      })
-    );
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.loadAccounts();
+  }
+
+  onSortChange(sort: string): void {
+    this.sort = sort;
+    this.currentPage = 0;
+    this.loadAccounts();
+  }
+
+  deleteAccount(id: string): void {
+    if (confirm('Are you sure you want to delete this account?')) {
+      this.bankAccountService.delete(id).subscribe({
+        next: () => {
+          this.loadAccounts();
+          this.showDialog('Conta excluída com sucesso', MessageType.SUCCESS);
+        },
+        error: (error) => this.onError(error)
+      });
+    }
   }
 
   onError(error: any) {
